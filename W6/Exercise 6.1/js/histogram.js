@@ -9,14 +9,13 @@ const drawHistogram = (data) => {
     const innerChart = svg.append('g')
         .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-    // 2. Generate bins
+    // 2. Make bins from energyConsumption.
     const bins = binGenerator(data);
-    // Keep the same bin boundaries for every filter
-    binGenerator
-        .domain([bins[0].x0, bins[bins.length - 1].x1])
-        .thresholds(bins.slice(0, -1).map(d => d.x1));
-
     console.log('Bins:', bins);
+    if (bins.length === 0) {
+        console.warn('No valid energyConsumption values to chart.');
+        return;
+    }
 
     // 3. Calculate domains and ranges.
     const minEng = bins[0].x0;

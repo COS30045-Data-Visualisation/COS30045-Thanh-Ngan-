@@ -1,0 +1,28 @@
+#histogram {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px 0;
+}
+
+#histogram svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.tick text {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    fill: #60452f;
+}
+
+.domain,
+.tick line {
+    stroke: #9c8e7f;
+}
+
+.axis-label {
+    font-size: 13px;
+    fill: #60452f;
+}
+

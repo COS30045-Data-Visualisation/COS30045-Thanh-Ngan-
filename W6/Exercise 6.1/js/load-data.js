@@ -1,3 +1,4 @@
+// Convert CSV strings into named values, including numeric conversions.
 d3.csv("data/Ex6_TVdata_withStar.csv", d => ({
     brand: d.brand,
     model: d.model,
@@ -7,13 +8,11 @@ d3.csv("data/Ex6_TVdata_withStar.csv", d => ({
     star: +d.star
 }))
 .then(data => {
+    console.log('Loaded TV records:', data.length);
     console.log(data);
-
-    // Draw the histogram
     drawHistogram(data);
-    // Create the interactive filters
-    populateFilters(data);
+    populateFilters(data); // Placeholder now; functionality added in W6.2
 })
 .catch(error => {
-    console.error("Error loading the CSV file:", error);
+    console.error('Error loading the CSV file:', error);
 });
