@@ -1,49 +1,60 @@
-// Exercise 6.3: Scatter plot of TV star rating and energy consumption
+/* =========================================================
+   EXERCISE 6.3 - TV STAR RATING VS ENERGY CONSUMPTION
+   x-axis: Star Rating | y-axis: Energy Consumption
+   Colour: screen technology (LED / LCD / OLED)
+========================================================= */
 const drawScatterplot = (data) => {
-    // STEP 1: Create the responsive SVG
+
+    // Set the dimensions and margins of the chart area
     const svg = d3.select("#scatterplot")
         .append("svg")
         .attr("viewBox", `0 0 ${width} ${height}`)
-        .attr("role", "img")
-        .attr("aria-label", "TV star rating versus labelled energy consumption");
 
-    // STEP 2: Shared inner chart, used later by tooltip functions
+    // Create an inner chart group with margins
+    // innerChartS was declared in shared-constants.js
     innerChartS = svg
         .append("g")
         .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-    // STEP 3: Use records containing both numerical measures
-    const plotData = data.filter(d =>
-        Number.isFinite(d.star) && Number.isFinite(d.energyConsumption)
-    );
+    // Set x-scale: TV star ratings (0 to maximum star rating)
+    xScaleS
+        .domain([0, d3.max(data, d => d.star)])
+        .range([0, innerWidth]);
 
-    // STEP 4: Set up separate scatterplot scales
-    const maxStar = d3.max(plotData, d => d.star);
-    const maxEnergy = d3.max(plotData, d => d.energyConsumption);
+    // Set y-scale: yearly TV energy consumption
+    yScaleS
+        .domain([0, d3.max(data, d => d.energyConsumption)])
+        .range([innerHeight, 0])
+        .nice();
 
-    xScaleS.domain([0, maxStar]).range([0, innerWidth]).nice();
-    yScaleS.domain([0, maxEnergy]).range([innerHeight, 0]).nice();
+    // Map screen technologies to distinct category colours
+    colorScale
+        .domain(["LED", "LCD", "OLED"])
+        .range(d3.schemeCategory10);
 
-    // STEP 5: Use different hues for screen technologies
-    const types = [...new Set(plotData.map(d => d.screenTech))];
-    colorScale.domain(types).range(d3.schemeCategory10);
-
-    // STEP 6: Draw circles (one circle for each TV)
-    innerChartS.selectAll("circle.tv-point")
+    // Draw circles (one circle for each TV)
+    innerChartS
+        .selectAll("circle")
         .data(plotData)
         .join("circle")
-        .attr("class", "tv-point")
         .attr("r", 3)
         .attr("cx", d => xScaleS(d.star))
         .attr("cy", d => yScaleS(d.energyConsumption))
         .attr("fill", d => colorScale(d.screenTech))
-        .attr("opacity", 0.5);
+        .attr("opacity", 0.5); 
 
-    // STEP 7: Add the x-axis and label
-    innerChartS.append("g")
+    // Add the x-axis (Star Rating)
+    innerChartS
+        .append("g")
         .attr("transform", `translate(0, ${innerHeight})`)
         .call(d3.axisBottom(xScaleS));
 
+    // Add the y-axis (Energy Consumption)
+    innerChartS
+        .append("g")
+        .call(d3.axisLeft(yScaleS));
+
+    // Label the two axes
     svg.append("text")
         .attr("class", "axis-label")
         .attr("x", width - margin.right)
@@ -51,34 +62,40 @@ const drawScatterplot = (data) => {
         .attr("text-anchor", "end")
         .text("Star Rating");
 
-    // STEP 8: Add the y-axis and label
-    innerChartS.append("g")
-        .call(d3.axisLeft(yScaleS));
-
     svg.append("text")
         .attr("class", "axis-label")
-        .attr("transform", `translate(18, ${margin.top + innerHeight / 2}) rotate(-90)`)
-        .attr("text-anchor", "middle")
+        .attr("x", margin.left - 58)
+        .attr("y", margin.top - 12)
         .text("Labelled Energy Consumption (kWh/year)");
 
-    // STEP 9: Add legend in the upper-right corner
-    const legend = svg.append("g")
+    // Position the legend in the upper-right corner
+    const legend = svg
+        .append("g")
         .attr("transform", `translate(${width - 100}, ${margin.top})`);
 
+    // Loop through the color scale domain to create legend entries
     colorScale.domain().forEach((screenTech, i) => {
-        const legendRow = legend.append("g")
+
+        // Create a group for each legend entry
+        const legendRow = legend
+            .append("g")
             .attr("transform", `translate(0, ${i * 20})`);
 
+        // Add a colored rectangle for each screenTech
         legendRow.append("rect")
             .attr("width", 10)
             .attr("height", 10)
             .attr("fill", colorScale(screenTech));
 
+        // Add text next to the rectangle
         legendRow.append("text")
-            .attr("x", 20)
+            // Position text to the right of the rectangle
+            .attr("x", 20) 
+            // Align text with the rectangle
             .attr("y", 10)
             .attr("text-anchor", "start")
             .style("alignment-baseline", "middle")
+            // Display screenTech value
             .text(screenTech);
     });
 };

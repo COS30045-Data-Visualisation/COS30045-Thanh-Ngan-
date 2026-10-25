@@ -1,3 +1,7 @@
+/* =========================================================
+   The same TV dataset is used in Exercises 6.1-6.4.
+   ========================================================= */
+
 d3.csv("data/Ex6_TVdata_withStar.csv", d => ({
     brand: d.brand,
     model: d.model,
@@ -12,16 +16,14 @@ d3.csv("data/Ex6_TVdata_withStar.csv", d => ({
     // Exercise 6.1: Draw the histogram
     drawHistogram(data);
 
-    // Exercise 6.2: Create the filter buttons
+    // Exercise 6.2: Create the filter buttons for the histogram
     populateFilters(data);
 
     // Exercise 6.3: Draw the scatter plot
     drawScatterplot(data);
 
-    // Exercise 6.3: Create the tooltip
+    // Exercise 6.4: Create the tooltip + Handle mouse events
     createTooltip();
-
-    // Exercise 6.3: Handle mouse events
     handleMouseEvents();
 
 })
