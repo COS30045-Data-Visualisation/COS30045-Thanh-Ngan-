@@ -56,7 +56,6 @@ const populateFilters = (data) => {
 /* =========================================================
    EXERCISE 6.4 - SCATTERPLOT TOOLTIPS
    ========================================================= */
-
 // Add an initially hidden tooltip group to the scatterplot
 const createTooltip = () => {
     const tooltip = innerChartS
@@ -89,15 +88,15 @@ const createTooltip = () => {
 const handleMouseEvents = () => {
     innerChartS.selectAll("circle")
         .on("mouseenter", (e, d) => {
-            // 6.4.5 - Display the TV screen size in the tooltip
+            // Display the TV screen size in the tooltip
             innerChartS.select(".tooltip text")
                 .text(`${d.screenSize}"`);
 
-            // 6.4.6 - Get hovered circle's centre coordinates
+            // Get hovered circle's centre coordinates
             const cx = +e.target.getAttribute("cx");
             const cy = +e.target.getAttribute("cy");
 
-            // 6.4.7 - Place tooltip above the point, then fade it in
+            // Place tooltip above the point, then fade it in
             innerChartS.select(".tooltip")
                 .interrupt()
                 .attr("transform", `translate(${cx - tooltipWidth / 2}, ${cy - 1.5 * tooltipHeight})`)
@@ -106,7 +105,7 @@ const handleMouseEvents = () => {
                 .style("opacity", 1);
         })
         .on("mouseleave", () => {
-            // 6.4.8 - Hide tooltip when mouse leaves the data point
+            // Hide tooltip when mouse leaves the data point
             innerChartS.select(".tooltip")
                 .interrupt()
                 .style("opacity", 0)
