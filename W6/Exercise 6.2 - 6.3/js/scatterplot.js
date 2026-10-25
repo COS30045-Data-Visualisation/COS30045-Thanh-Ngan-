@@ -1,92 +1,84 @@
-const drawHistogram = (data) => {
-
-    // STEP 1: Set up the SVG container
-    const svg = d3.select("#histogram")
+// Exercise 6.3: Scatter plot of TV star rating and energy consumption
+const drawScatterplot = (data) => {
+    // STEP 1: Create the responsive SVG
+    const svg = d3.select("#scatterplot")
         .append("svg")
-        .attr("viewBox", `0 0 ${width} ${height}`);
+        .attr("viewBox", `0 0 ${width} ${height}`)
+        .attr("role", "img")
+        .attr("aria-label", "TV star rating versus labelled energy consumption");
 
-    // STEP 2: Create the inner chart with margins
-    const innerChart = svg
+    // STEP 2: Shared inner chart, used later by tooltip functions
+    innerChartS = svg
         .append("g")
-        .attr("transform",
-            `translate(${margin.left}, ${margin.top})`
-        );
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-    // STEP 3: Generate bins
-    const bins = binGenerator(data);
+    // STEP 3: Use records containing both numerical measures
+    const plotData = data.filter(d =>
+        Number.isFinite(d.star) && Number.isFinite(d.energyConsumption)
+    );
 
-    console.log("Bins:", bins);
+    // STEP 4: Set up separate scatterplot scales
+    const maxStar = d3.max(plotData, d => d.star);
+    const maxEnergy = d3.max(plotData, d => d.energyConsumption);
 
-    // Keep consistent bin boundaries for filtering
-    binGenerator
-        .domain([bins[0].x0, bins[bins.length - 1].x1])
-        .thresholds(bins.slice(0, -1).map(d => d.x1));
+    xScaleS.domain([0, maxStar]).range([0, innerWidth]).nice();
+    yScaleS.domain([0, maxEnergy]).range([innerHeight, 0]).nice();
 
-    // STEP 4: Define minimum and maximum values
-    const minEng = bins[0].x0;
-    const maxEng = bins[bins.length - 1].x1;
+    // STEP 5: Use different hues for screen technologies
+    const types = [...new Set(plotData.map(d => d.screenTech))];
+    colorScale.domain(types).range(d3.schemeCategory10);
 
-    const binsMaxLength = d3.max(bins, d => d.length);
+    // STEP 6: Draw circles (one circle for each TV)
+    innerChartS.selectAll("circle.tv-point")
+        .data(plotData)
+        .join("circle")
+        .attr("class", "tv-point")
+        .attr("r", 3)
+        .attr("cx", d => xScaleS(d.star))
+        .attr("cy", d => yScaleS(d.energyConsumption))
+        .attr("fill", d => colorScale(d.screenTech))
+        .attr("opacity", 0.5);
 
-    // STEP 5: Set up the X and Y scales
-    xScale
-        .domain([minEng, maxEng])
-        .range([0, innerWidth]);
+    // STEP 7: Add the x-axis and label
+    innerChartS.append("g")
+        .attr("transform", `translate(0, ${innerHeight})`)
+        .call(d3.axisBottom(xScaleS));
 
-    yScale
-        .domain([0, binsMaxLength])
-        .range([innerHeight, 0])
-        .nice();
-
-    // STEP 6: Draw the histogram bars
-    innerChart
-        .selectAll("rect")
-        .data(bins)
-        .join("rect")
-        .attr("x", d => xScale(d.x0))
-        .attr("y", d => yScale(d.length))
-        .attr("width", d =>
-            xScale(d.x1) - xScale(d.x0)
-        )
-        .attr("height", d =>
-            innerHeight - yScale(d.length)
-        )
-        .attr("fill", barColor)
-        .attr("stroke", bodyBackgroundColor)
-        .attr("stroke-width", 2);
-
-    // STEP 7: Add the X-axis
-    const bottomAxis = d3.axisBottom(xScale);
-
-    innerChart
-        .append("g")
-        .attr("transform",
-            `translate(0, ${innerHeight})`
-        )
-        .call(bottomAxis);
-
-    // STEP 8: Add the X-axis label
-    svg
-        .append("text")
+    svg.append("text")
         .attr("class", "axis-label")
-        .text("Labelled Energy Consumption (kWh/year)")
-        .attr("text-anchor", "end")
         .attr("x", width - margin.right)
-        .attr("y", height - 8);
+        .attr("y", height - 8)
+        .attr("text-anchor", "end")
+        .text("Star Rating");
 
-    // STEP 9: Add the Y-axis
-    const leftAxis = d3.axisLeft(yScale);
+    // STEP 8: Add the y-axis and label
+    innerChartS.append("g")
+        .call(d3.axisLeft(yScaleS));
 
-    innerChart
-        .append("g")
-        .call(leftAxis);
-
-    // STEP 10: Add the Y-axis label
-    svg
-        .append("text")
+    svg.append("text")
         .attr("class", "axis-label")
-        .text("Frequency")
-        .attr("x", margin.left - 55)
-        .attr("y", margin.top - 12);
+        .attr("transform", `translate(18, ${margin.top + innerHeight / 2}) rotate(-90)`)
+        .attr("text-anchor", "middle")
+        .text("Labelled Energy Consumption (kWh/year)");
 
+    // STEP 9: Add legend in the upper-right corner
+    const legend = svg.append("g")
+        .attr("transform", `translate(${width - 100}, ${margin.top})`);
+
+    colorScale.domain().forEach((screenTech, i) => {
+        const legendRow = legend.append("g")
+            .attr("transform", `translate(0, ${i * 20})`);
+
+        legendRow.append("rect")
+            .attr("width", 10)
+            .attr("height", 10)
+            .attr("fill", colorScale(screenTech));
+
+        legendRow.append("text")
+            .attr("x", 20)
+            .attr("y", 10)
+            .attr("text-anchor", "start")
+            .style("alignment-baseline", "middle")
+            .text(screenTech);
+    });
 };

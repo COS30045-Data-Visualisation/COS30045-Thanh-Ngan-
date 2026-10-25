@@ -29,7 +29,7 @@ const yScale = d3.scaleLinear();
 // Set up scatterplot scales & color scale
 const xScaleS = d3.scaleLinear();
 const yScaleS = d3.scaleLinear();
-const colorcale = d3.scaleOrdinal();
+const colorScale = d3.scaleOrdinal();
 
 // Bin Generator
 const binGenerator = d3.bin()

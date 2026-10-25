@@ -1,4 +1,3 @@
-
 const populateFilters = (data) => {
 
     // STEP 1: Create filter buttons
@@ -62,4 +61,57 @@ const populateFilters = (data) => {
                 innerHeight - yScale(d.length)
             );
     };
+};
+
+// Exercise 6.3: Create a tooltip inside the scatterplot's inner chart
+const createTooltip = () => {
+    const tooltip = innerChartS.append("g")
+        .attr("class", "tooltip")
+        .attr("pointer-events", "none")
+        .style("opacity", 0);
+
+    tooltip.append("rect")
+        .attr("width", tooltipWidth)
+        .attr("height", tooltipHeight)
+        .attr("rx", 3)
+        .attr("ry", 3)
+        .attr("fill", "#6F2C91")
+        .attr("fill-opacity", 0.85);
+
+    tooltip.append("text")
+        .attr("x", tooltipWidth / 2)
+        .attr("y", tooltipHeight / 2)
+        .attr("text-anchor", "middle")
+        .attr("dominant-baseline", "middle")
+        .attr("fill", "white")
+        .style("font-weight", 700)
+        .text("");
+};
+
+// Exercise 6.3: Display screen size while the mouse is over a TV point
+const handleMouseEvents = () => {
+    const tooltip = innerChartS.select(".tooltip");
+
+    innerChartS.selectAll("circle.tv-point")
+        .on("mouseenter", (e, d) => {
+            const label = Number.isFinite(d.screenSize)
+                ? `${d.screenSize}"`
+                : "N/A";
+            tooltip.select("text").text(label);
+
+            const cx = +d3.select(e.currentTarget).attr("cx");
+            const cy = +d3.select(e.currentTarget).attr("cy");
+            const tooltipX = Math.max(0,
+                Math.min(innerWidth - tooltipWidth, cx - tooltipWidth / 2));
+            const tooltipY = Math.max(0, cy - tooltipHeight - 10);
+
+            tooltip.interrupt()
+                .attr("transform", `translate(${tooltipX}, ${tooltipY})`)
+                .transition()
+                .duration(200)
+                .style("opacity", 1);
+        })
+        .on("mouseleave", () => {
+            tooltip.interrupt().style("opacity", 0);
+        });
 };
