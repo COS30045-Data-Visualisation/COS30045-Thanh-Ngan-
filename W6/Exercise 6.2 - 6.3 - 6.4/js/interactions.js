@@ -62,10 +62,10 @@ const createTooltip = () => {
         .append("g")
         .attr("class", "tooltip")
         .style("opacity", 0)
-        .style("pointer-events", "none");
 
     // Add background rectangle with rounded corners
-    tooltip.append("rect")
+    tooltip
+        .append("rect")
         .attr("width", tooltipWidth)
         .attr("height", tooltipHeight)
         .attr("rx", 3)
@@ -87,29 +87,32 @@ const createTooltip = () => {
 // Attach mouse events to every scatterplot circle
 const handleMouseEvents = () => {
     innerChartS.selectAll("circle")
+
         .on("mouseenter", (e, d) => {
-            // Display the TV screen size in the tooltip
-            innerChartS.select(".tooltip text")
-                .text(`${d.screenSize}"`);
+            console.log("Mouse entred circle", d);
+
+        // Update the text in the tooltip with the screenTech value
+            d3.select(".tooltip text")
+                .text(`${d.screenSize}''`);
 
             // Get hovered circle's centre coordinates
-            const cx = +e.target.getAttribute("cx");
-            const cy = +e.target.getAttribute("cy");
+            const cx = e.target.getAttribute("cx");
+            const cy = e.target.getAttribute("cy");
 
             // Place tooltip above the point, then fade it in
-            innerChartS.select(".tooltip")
-                .interrupt()
-                .attr("transform", `translate(${cx - tooltipWidth / 2}, ${cy - 1.5 * tooltipHeight})`)
+            d3.select(".tooltip")
+                .attr("transform", `translate(${cx - 0.5*tooltipWidth}, ${cy - 1.5 * tooltipHeight})`)
                 .transition()
-                .duration(200)
-                .style("opacity", 1);
+                   .duration(200)
+                   .style("opacity", 1);
         })
-        .on("mouseleave", () => {
-            // Hide tooltip when mouse leaves the data point
-            innerChartS.select(".tooltip")
-                .interrupt()
-                .style("opacity", 0)
-                .attr("transform", "translate(0, 500)");
+
+        .on("mouseleave", (e, d) => {
+            console.log("Mouse left circle", d);
+        
+            d3.seclect(".tooltip")
+            .style("opacity", 0)
+            .attr("transform", `translate(0, 500)`);
         });
 };
 
