@@ -9,10 +9,21 @@ d3.csv("data/Ex6_TVdata_withStar.csv", d => ({
 .then(data => {
     console.log(data);
 
-    // Draw the histogram
+    // Exercise 6.1: Draw the histogram
     drawHistogram(data);
-    // Create the interactive filters
+
+    // Exercise 6.2: Create the filter buttons
     populateFilters(data);
+
+    // Exercise 6.3: Draw the scatter plot
+    drawScatterplot(data);
+
+    // Exercise 6.3: Create the tooltip
+    createTooltip();
+
+    // Exercise 6.3: Handle mouse events
+    handleMouseEvents();
+
 })
 .catch(error => {
     console.error("Error loading the CSV file:", error);
