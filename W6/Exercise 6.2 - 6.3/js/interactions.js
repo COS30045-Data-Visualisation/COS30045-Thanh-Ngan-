@@ -11,14 +11,13 @@ const populateFilters = (data) => {
            .attr("class", d => `filter ${d.isActive ? "active" : ""}`)
            .text(d => d.label)
 
-           // Add click event listener
-            .on("click", (e, d) => {
-                console.log("Clicked filter:", e);
-                console.log("Clicked filter data:", d);
-            });
+        // Add click event listener
+        .on("click", (e, d) => {
+            console.log("Clicked filter:", e);
+            console.log("Clicked filter data:", d);
 
-        // If the clicked filter is not already active, update the active state of the filters
-        if (!d.isActive) {
+            // If the clicked filter is not already active, update the active state of the filters
+            if (!d.isActive) {
                 filters_screen.forEach(filter => {
                     filter.isActive = d.id === filter.id ? true : false;
                 });
@@ -30,6 +29,7 @@ const populateFilters = (data) => {
                 // Redraw histogram frequencies for selected group
                 updateHistogram(d.id, data);
             }
+        });
 
     // Update bar heights from the selected TV screen technology
     const updateHistogram = (filterId, data) => {

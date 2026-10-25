@@ -35,7 +35,7 @@ const drawScatterplot = (data) => {
     // Draw circles (one circle for each TV)
     innerChartS
         .selectAll("circle")
-        .data(plotData)
+        .data(data)
         .join("circle")
         .attr("r", 3)
         .attr("cx", d => xScaleS(d.star))
