@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appliance Energy Consumption</title>
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+    <header class="site-header hero-header">
+        <nav>
+            <!-- Power Logo - return the user to the Home page when the logo is clicked -->
+            <a href="index.html" class="logo_link">
+                <img src="./assets/PowerIcon.png" alt="Power Logo">
+                <span class="name">Appliance Energy</span>
+            </a>
+            <!-- Main navigation -->
+            <ul>
+                <li><a href="index.html" class="nav-home">Home</a></li>
+                <li><a href="televisions.html" class="nav-televisions">Televisions</a></li>
+                <li><a href="about.html" class="nav-about" aria-current="page">About us</a></li>
+            </ul>
+            <button class="toggle-menu" aria-label="Responsive Navigation Menu">☰</button>
+        </nav>
+
+        <div class="wrap">
+            <h1>About this website</h1>
+            <p class="lead">This site is a small demonstration project created for COS30045 Data Visualisation at Swinburne University of Technology. 
+            It shows how a simple multi-page website can be structured with HTML, styled with CSS, and made interactive with JavaScript.</p>
+        </div>
+    </header>
+<!------------------------------------------------------------------------------------------------------------------->
+    <main class="about-page">
+        <h2 class="head2">Data source</h2>
+        <p class="sub-text">A data set published by the Australian Government, containing information about the energy consumption of appliances sold in Australia, will be used for Exercise 1-3. The version of the data set is "tv_2026_02_15.csv".</p>
+
+        <h2 class="head2">Accuracy and limitations</h2>
+        <ul class="sub-text">
+            <li class="sub-text">Energy values are consumption in kWh/year, not measured use in a real home; actual use depends on viewing hours, brightness settings and standby.</li>
+            <li class="sub-text">Size category averages in Figure 4 (≈ 746 / 382 / 128 kWh) were read approximately from the KNIME chart; the technology averages in Figure 5 are the exact values from the KNIME table.</li>
+            <li class="sub-text">The category boundaries leave small gaps (43″– 44″ and 65″– 66″), so a few sizes may fall outside the three groups, depending on rounding.</li>
+            <li class="sub-text">Means can be pulled up by extreme models (e.g. one ~114″ model at about 2,650 kWh/year), and the number of models in each group differs, so a model count does not equal units sold.</li>
+            <li class="sub-text">The dollar figures on the website assume 30 c/kWh purely for illustration; this is not from the dataset.</li>
+            <li class="sub-text">Model counts per brand show how many models exist, not how many TVs were sold or market share.</li>
+        </ul>
+
+        <h2 class="head2">Privacy</h2>
+        <p class="sub-text">The data describes products (TV models), not people. It contains no personal or sensitive information.</p>
+
+        <h2 class="head2">Ethics</h2>
+        <p class="sub-text">No personal data is used. Brand names are shown only to describe the market; no claim is made that one brand is better or worse. The advice is general and is based on averages, so individual models can differ – readers are encouraged to check the kWh/year label of the specific TV they are considering. Visuals use zero-based axes and avoid truncation to prevent misleading comparisons.</p>
+            
+        <h2 class="head2">Generative AI Acknowledgement</h2>
+        <p class="sub-text">Generative AI (Claude and Copilot) was used to explain concepts, suggest approaches, and assist with debugging. All code was written, reviewed, and adapted by the author. Further information is available in the <strong>README.md</strong></p>
+            
+    </main>
+
+<!------------------------------------------------------------------------------------------------------------------->
+    <footer class="footer-content">
+        <div class="container footer-inner">
+            <div>&copy; <span id="footer-year">2026 -</span> Thanh Ngan</div>
+            <div>Generative AI Acknowledgement: Claude & Copilot was used for debugging, supporting CSS and Javascript.</div>
+        </div>
+    </footer>
+    
+</body>
+</html>
