@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appliance Energy Consumption</title>
+    <link rel="stylesheet" href="./assets/style.css">
+    <script src="./assets/script.js" defer></script>
+</head>
+<body>
+    <header class="site-header hero-header">
+        <nav>
+            <!-- Power Logo - return the user to the Home page when the logo is clicked -->
+            <a href="index.html" class="logo_link">
+                <img src="./assets/PowerIcon.png" alt="Power Logo">
+                <span class="name">Appliance Energy</span>
+            </a>
+            <!-- Main navigation -->
+            <ul>
+                <li><a href="index.html" class="nav-home" aria-current="page">Home</a></li>
+                <li><a href="televisions.html" class="nav-televisions">Televisions</a></li>
+                <li><a href="about.html" class="nav-about">About us</a></li>
+            </ul>
+            <button class="toggle-menu" aria-label="Responsive Navigation Menu">☰</button>
+        </nav>
+
+        <div class="wrap">
+            <h1>Appliance Energy Consumption<br>
+                <span> in Australia</span>
+            </h1>
+            <p class="lead">Household appliances are one of the biggest contributors to electricity bills across Australia. From refrigerators that run 24/7 to air conditioners used heavily during summer, 
+                understanding how much energy each appliance consumes can help households make smarter, more cost-effective decisions. This website explores the energy consumption of common 
+                household appliances, with <strong><u> a focus on televisions</u></strong>, and provides simple tools to help you estimate your own electricity costs.</p>
+        </div>
+
+    </header>
+
+    <!-- This is the main content in the Home page -->
+    <main>
+        <h2 class="head2">Why Televisions Matter</h2>
+        <p class="sub-text">A single television uses less power than an air conditioner or a water heater, but it runs for 
+            long periods, often alongside a set top box, a games console or a sound bar. Over a full year, this adds up to 
+            a noticeable part of a household's electricity use.
+        </p>
+        <div class="card-grid">
+            <article class="card-1">
+                <h3>Long viewing hours</h3>
+                <p><em>Televisions are often on for several hours every day, so even a modest wattage adds up over a full year.</em></p>
+            </article>
+
+            <article class="card-2">
+                <h3>Brightness</h3>
+                <p><em>Higher brightness levels consume more electricity. Display settings used in stores are usually brighter than what is necessary for a comfortable home environment.</em></p>
+            </article>
+
+            <article class="card-3">
+                <h3>Screen size</h3>
+                <p><em>Screen sizes keep growing, and a larger panel generally draws more power than a smaller one.</em></p>
+            </article>
+
+            <article class="card-4">
+                <h3>Extra devices</h3>
+                <p><em>Set top boxes, games consoles and sound bars are often left running alongside the television.</em></p>
+            </article>
+
+            <article class="card-5">
+                <h3>Panel technology</h3>
+                <p><em>LED, OLED, and LCD(LED) displays can have different energy consumption patterns, even when they are the same size.</em></p>
+            </article>
+
+            <article class="card-6">
+                <h3>Buying decisions</h3>
+                <p><em>Comparing star ratings before you buy can lower running costs for the whole life of the television.</em></p>
+            </article>
+        </div>
+
+        <!-- Exercise 4.3 - Step 2: Container for D3 SVG -->
+        <div class="responsive-svg-container"></div>
+
+        <section class="calc-section container" id="appliance-energy-calculator">
+            <h2>Appliance energy calculator</h2>
+            <p>Enter the details of an appliance to estimate what it uses and what it costs. The results update as you type.</p>
+            <div class="calc">
+                <form class="calc-form" id="calc-form" novalidate>
+                    <div class="field">
+                        <label for="appliance">Appliance</label>
+                        <select id="appliance" name="appliance">
+                            <option value="custom">Enter my own wattage</option>
+                            <option value="90" selected>LED television, 55 inch (90 W)</option>
+                            <option value="120">LED television, 65 inch (120 W)</option>
+                        </select>
+                        <p class="hint">Choosing an appliance fills in a typical wattage. All values are placeholders.</p>
+                    </div>
+
+                    <div class="field">
+                        <label for="watts">Power usage (watts)</label>
+                        <input type="number" id="watts" name="watts" min="0" max="10000" step="1" value="90" required>
+                        <p class="error" id="watts-error" role="alert"></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="hours">Average hours of use per day</label>
+                        <input type="number" id="hours" name="hours" min="0" max="24" step="0.5" value="4" required>
+                        <p class="error" id="hours-error" role="alert"></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="price">Electricity price (cents per kWh)</label>
+                        <input type="number" id="price" name="price" min="0" max="200" step="0.1" value="30" required>
+                        <p class="error" id="price-error" role="alert"></p>
+                    </div>
+                    <button type="submit" class="btn">Calculate</button>
+                </form>
+
+                <div class="calc-result">
+                    <h3>Estimated usage and cost</h3>
+                    <div class="result-row">
+                        <span>Daily energy</span>
+                        <strong id="result-daily">–</strong>
+                    </div>
+                    <div class="result-row">
+                        <span>Monthly energy</span>
+                        <strong id="result-monthly">–</strong>
+                    </div>
+                    <div class="result-row">
+                        <span>Yearly energy</span>
+                        <strong id="result-yearly">–</strong>
+                    </div>
+                    <div class="result-row result-cost">
+                        <span>Estimated annual cost</span>
+                        <strong id="result-cost">–</strong>
+                    </div>
+                    <p class="result-note" id="result-note"></p>
+                </div>
+            </div>
+        </section>
+
+        <!--- FAQ section + Accordion-->
+            <h2 class="faq-section">Frequently Asked Questions</h2>
+            <!-- FAQ - 1st question -->
+            <div class="faq-box">
+                <div class="faq">
+                    <input type="checkbox" id="faq1">
+                    <label class="faq-question" for="faq1">Which appliances use the most electricity?</label>
+                    <div class="faq-answer">
+                        <em>
+                        Air conditioners, water heaters, refrigerators, and washing machines are typically among the highest energy-consuming appliances in an Australian household.
+                        </em>
+                    </div>
+                </div>
+
+            <!-- FAQ - 2nd question -->
+                <div class="faq">
+                    <input type="checkbox" id="faq2">
+                    <label class="faq-question" for="faq2"> How can I reduce my appliance's energy usage?</label>
+                    <div class="faq-answer">
+                        <em>
+                        Simple steps include switching off appliances at the wall when not in use, choosing energy-efficient models (look for the Energy Rating label), and running appliances like washing machines during off-peak electricity hours.
+                        </em>
+                    </div>
+                </div>
+
+            <!-- FAQ - 3rd question -->
+                <div class="faq">
+                    <input type="checkbox" id="faq3">
+                    <label class="faq-question" for="faq3"> What does the Energy Rating label mean?</label>
+                    <div class="faq-answer">
+                        <em>
+                        The Energy Rating label shows how energy-efficient an appliance is, using a star system — the more stars, the more efficient the appliance, meaning lower running costs over time.
+                        </em>
+                    </div>
+                </div>
+
+            <!-- FAQ - 4th question -->
+                <div class="faq">
+                    <input type="checkbox" id="faq4">
+                    <label class="faq-question" for="faq4"> Do older appliances use more electricity than newer ones?</label>
+                    <div class="faq-answer">
+                        <em>
+                        In most cases, yes. Older appliances often lack modern energy-saving technology, so they tend to consume significantly more electricity than newer, more efficient models.
+                        </em>
+                    </div>
+                </div>
+
+            <!-- FAQ - 5th question -->
+                <div class="faq">
+                    <input type="checkbox" id="faq5">
+                    <label class="faq-question" for="faq5"> How is electricity cost calculated for an appliance?</label>
+                    <div class="faq-answer">
+                        <em>
+                        Electricity cost is generally calculated by multiplying an appliance's power usage (in kilowatts) by the number of hours it is used, then multiplying that by the electricity price per kilowatt-hour.
+                        </em>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+    <footer class="footer-content">
+        <div class="container footer-inner">
+            <div>&copy; <span id="footer-year">2026 -</span> Thanh Ngan</div>
+            <div>Generative AI Acknowledgement: Claude & Copilot was used for debugging, supporting CSS and Javascript.</div>
+        </div>
+    </footer>
+
+    <!-- Exercise 4.2: Load D3.js and the new D3 JavaScript file -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+    
+</body>
+</html>

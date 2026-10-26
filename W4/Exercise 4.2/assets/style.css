@@ -1,0 +1,835 @@
+:root {
+  --cream:       #F8E8A5;
+  --navajo-white:#FFDEAD;
+  --camel:       #c5a778;
+  --amber:       #EBA746;
+  --amber-dark:  #D18F2E;
+  --brown:       #7D6744;
+  --dark-brown:  #5A4A31;
+  --dark-coffee: #3B3226;
+  --border:      var(--camel);
+  --page:        #FDFBF4;
+  --surface:     #FFFFFF;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ----------------------------------------------------------------------------------- */
+/* Navigation */
+.site-header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0;
+  border-bottom: 4px solid var(--brown);
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-left: calc(50vw - 50%);
+  padding-right: calc(50vw - 50%);
+}
+
+.logo_link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--dark-coffee);
+}
+
+.logo_link img {
+  height: 50px;
+}
+
+.logo_link .name {
+  font-weight: bold;
+  font-size: 1.05rem;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+}
+
+nav ul a {
+  text-decoration: none;
+  color: var(--dark-coffee);
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  transition: background-color 0.2s;
+}
+
+nav ul a:hover {
+  background-color: var(--cream);
+}
+
+nav ul a[aria-current="page"] {
+  background: var(--amber);
+  color: var(--surface);
+}
+
+.toggle-menu {
+  display: none;   
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--dark-coffee);
+}
+
+/* ----------------------------------------------------------------------------------- */
+/* Hero header */
+html {
+  scroll-behavior: smooth;
+}
+
+.hero-header {
+  margin-top: -1.2rem;                     
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 0 calc(50vw - 50%) 2.25rem;
+  background: var(--page);
+  color: var(--dark-coffee);
+  border-bottom: 4px solid var(--brown);
+}
+
+.hero-header nav {
+  margin: 0;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(59, 50, 38, 0.25);
+}
+
+.hero-header nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+.hero-header nav ul a:hover {
+  background-color: rgba(255, 255, 255, 0.45);
+}
+
+.hero-header nav ul a[aria-current="page"] {
+  background: var(--dark-coffee);
+  color: var(--cream);
+}
+
+.hero-header .wrap {
+  max-width: 65rem;
+  margin: 0 auto;
+  padding: 2.25rem 0 0;
+}
+
+.hero-header .eyebrow {
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.hero-header h1 {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  margin: 0.2em 0 0.3em;
+  line-height: 1.1;
+  color: var(--dark-coffee);
+}
+
+.hero-header .lead {
+  font-size: 1.125rem;
+  max-width: 60rem;
+  margin: 0 0 1.5rem;
+  line-height: 1.6;
+}
+
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.hero-links a {
+  color: var(--dark-coffee);
+  text-decoration: none;
+  background: var(--amber);
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  transition: background-color 0.2s;
+}
+
+.hero-links a:hover {
+  background: var(--navajo-white)
+}
+
+/* ----------------------------------------------------------------------------------- */
+body {
+    color: var(--dark-coffee);
+    background: var(--page);
+    padding: 1.2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 65rem;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Color for main content in Home Page */
+.hero-title {
+    color: var(--dark-brown)
+}
+
+/* FAQ section */
+.faq-section {
+    color: var(--dark-brown)
+}
+
+/* ----------------------------------------------------------------------------------- */
+.calc {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  align-items: start;
+}
+
+.calc-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2rem;
+}
+
+.field {
+  margin-bottom: 1.5rem;
+}
+
+.field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.hint {
+  font-size: 0.85rem;
+  color: var(--dark-coffee);
+  margin-top: 0.4rem;
+}
+
+.error {
+  font-size: 0.85rem;
+  color: #b91c1c;
+  margin-top: 0.4rem;
+  min-height: 1rem;
+}
+
+.btn {
+  background: var(--accent);
+  color: #ffffff;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 999px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.calc-result {
+  background: var(--cream, #FCF4D9);
+  border-left: 4px solid var(--brown-dark, var(--accent));
+  border-radius: var(--radius, 10px);
+  padding: 2rem;
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem 0;
+  border-bottom: 1px;
+}
+
+.result-cost strong {
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+.result-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 1rem;
+}
+
+/* Styling the Accordion (FAQ part) */
+.faq input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+
+/* Accordion styles */
+.faq {
+    color: var(--dark-brown);
+    margin-bottom: 2.5rem;
+}
+
+.faq-question {
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em;
+    background: var(--cream);
+    cursor: pointer;
+    user-select: none;
+}
+
+.faq-question::after {
+    content: '\002B';
+    padding: 0.40rem;
+    transform: scale(1.5);
+    text-align: center;
+    transition: all 0.35s;
+}
+
+.faq-answer {
+    max-height: 0;
+    padding: 0 1em;
+    color: var(--dark-coffee);
+    background: white;
+    transition: all 0.35s;
+    display: none;
+}
+
+.faq input[type="checkbox"]:checked + .faq-question {
+    background: var(--camel);
+}
+
+.faq input[type="checkbox"]:checked + .faq-question::after {
+    content: '\2013';
+    transform: scale(1.5);
+}
+
+.faq input[type="checkbox"]:checked ~ .faq-answer {
+    max-height: 100vh;
+    padding: 1em;
+    display: block;
+    transition: all 0.35s;
+}
+/* ----------------------------------------------------------------------------------- */
+/* Section heading + intro text - shared by every page's <main> (Home, Televisions, About us) */
+main > .head2 {
+  margin: 2rem 0 0.75rem;
+  padding: 0.65rem 1rem;
+  border: 0;
+  border-radius: 4px;
+  background: var(--cream);
+  box-shadow: inset 5px 0 0 var(--amber-dark);
+  color: var(--dark-brown);
+  font-size: 1.45rem;
+  line-height: 1.35;
+}
+
+main > .sub-text,
+main > .small-text {
+  max-width: 65rem;
+  margin: 0 0 1.25rem;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+/* ----------------------------------------------------------------------------------- */
+/* About us */
+.about-page > .head2 {
+  margin: 2rem 0 0.75rem;
+  padding: 0.65rem 1rem;
+  border: 0;
+  border-radius: 4px;
+  background: var(--cream);
+  box-shadow: inset 5px 0 0 var(--amber-dark);
+  color: var(--dark-brown);
+  font-size: 1.45rem;
+  line-height: 1.35;
+}
+
+.about-page > .sub-text {
+  max-width: 65rem;
+  margin: 0 0 1.25rem;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.about-page > ul {
+  margin: 0 0 1.25rem;
+  font-size: 1rem;
+  padding-left: 1.5rem;
+  line-height: 1.6;
+}
+
+.about-page > ul li::marker {
+  color: var(--amber-dark);
+}
+/* ----------------------------------------------------------------------------------- */
+/* Televisions */
+.televisions-page > .callout {
+  margin: 2rem 0;
+  padding: 0 0 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--camel);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.callout h2 {
+  margin: 0 0 1.25rem;
+  padding: 0.65rem 1.5rem;
+  background: var(--cream);
+  box-shadow: inset 5px 0 0 var(--amber-dark);
+  color: var(--dark-brown);
+  font-size: 1.45rem;
+  line-height: 1.35;
+}
+
+.callout p {
+  margin: 0 1.5rem 1rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+ 
+.callout em {
+  color: var(--dark-brown);
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 1.5rem 0;
+}
+ 
+.kpi {
+  padding: 1.25rem;
+  background: var(--page);
+  border: 1px solid var(--camel);
+  border-top: 4px solid var(--amber-dark);
+  border-radius: 4px;
+}
+
+.kpi .num {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--brown);
+}
+ 
+.kpi .lbl {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--dark-coffee);
+}
+
+/* "The story in five parts" */
+#framework,
+#market,
+#size {
+  margin: 2rem 0;
+}
+ 
+#framework > h2 {
+  margin: 0 0 0.75rem;
+  padding: 0.65rem 1rem;
+  border-radius: 4px;
+  background: var(--cream);
+  box-shadow: inset 5px 0 0 var(--amber-dark);
+  color: var(--dark-brown);
+  font-size: 1.45rem;
+  line-height: 1.35;
+}
+ 
+#framework > p {
+  margin: 0 0 1.25rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+ 
+.five {
+  display: grid;
+  gap: 1.5rem;
+}
+ 
+.five-item {
+  padding: 1.25rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--camel);
+  border-top: 4px solid var(--amber-dark);
+  border-radius: 4px;
+}
+ 
+.five-item h3 {
+  margin: 0 0 0.75rem;
+  color: var(--dark-brown);
+  font-size: 1.2rem;
+  line-height: 1.35;
+}
+ 
+.step {
+  display: inline-grid;
+  place-items: center;
+  width: 1.7em;
+  height: 1.7em;
+  margin-right: 0.4em;
+  border-radius: 50%;
+  background: var(--brown);
+  color: var(--surface);
+  font-size: 0.8em;
+  vertical-align: 0.1em;
+}
+ 
+.five-item h3 small {
+  display: block;
+  margin: 0.15rem 0 0 2.4rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--brown);
+}
+ 
+.five-item li {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+ 
+.five-item p {
+  font-size: 1.05rem;
+  margin: 0 0 0.6rem;
+}
+ 
+.five-item ul {
+  margin: 0.25rem 0 0;
+  padding-left: 1.5rem;
+}
+ 
+.five-item li {
+  margin-bottom: 0.4rem;
+}
+ 
+.five-item li::marker {
+  color: var(--amber-dark);
+}
+ 
+.five-item em {
+  color: var(--dark-brown);
+}
+ 
+.five-item .kpis {
+  margin: 0.5rem 0 0;
+}
+ 
+.kpis.small .num {
+  font-size: 1.4rem;
+}
+ 
+.five-item img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-top: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--camel);
+  border-radius: 4px;
+}
+
+/* ----------------------------------------------------------------------------------- */
+/* Market overview + size sections (Figures 1-4, takeaway, cost table) */
+#market > h2,
+#size > h2 {
+  margin: 0 0 1rem;
+  color: var(--dark-brown);
+  font-size: 1.65rem;
+  line-height: 1.3;
+}
+
+#market > p,
+#size > p {
+  margin: 0 0 1.25rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+#size > h3 {
+  margin: 2rem 0 0.5rem;
+  color: var(--dark-brown);
+  font-size: 1.2rem;
+  line-height: 1.35;
+}
+
+figure {
+  margin: 1.5rem 0;
+  padding: 0;
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+figure.narrow {
+  max-width: 44rem;
+}
+
+figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--brown);
+}
+
+figcaption strong {
+  color: var(--dark-brown);
+}
+
+#market > p.takeaway {
+  padding: 0.25rem 0 0.25rem 1rem;
+  border-left: 5px solid var(--amber-dark);
+  font-weight: 600;
+  color: var(--dark-brown);
+}
+
+.cost {
+  margin: 1.5rem 0 0;
+  overflow-x: auto;
+}
+
+.cost h4 {
+  margin: 0 0 0.75rem;
+  color: var(--dark-brown);
+  font-size: 1.15rem;
+  line-height: 1.35;
+}
+
+.cost h4 span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--brown);
+}
+
+.televisions-page .cost table {
+  min-width: 28rem;
+  font-size: 0.95rem;
+}
+
+.televisions-page .cost th,
+.televisions-page .cost td {
+  padding: 0.8rem 1rem;
+}
+
+.cost .note {
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--brown);
+}
+
+.findings li {
+  font-size: 1.05rem;
+  margin-bottom:15px
+}
+
+.recommend {
+  padding: 1.25rem 1.5rem;
+  background:var(--surface);
+  border:1px solid var(--camel);
+  border-top: 4px solid var(--amber-dark);
+  border-radius:4px;
+}
+
+.recommend li {
+  font-size: 1.05rem;
+  margin-bottom:15px
+}
+
+#storyboard > h2 {
+  text-align: center;
+}
+
+.board {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:16px
+}
+
+.note-card {
+  background:var(--surface);
+  border:1px solid var(--camel);
+  padding:18px;
+  border-radius:4px;
+  font-size:1rem;
+  box-shadow:2px 3px 0 rgba(0,0,0,.08);
+  transform:rotate(-.6deg)
+}
+.note-card:nth-child(even) {transform:rotate(.7deg)}
+.note-card b {
+  display:block;
+  margin-bottom:4px
+}
+
+#about > h2 {
+  text-align: center;
+}
+
+
+
+/* ----------------------------------------------------------------------------------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin: 1.25rem 0 2.5rem;
+}
+
+.card-grid article {
+  padding: 1.25rem;
+  border: 1px solid var(--camel);
+  border-top: 4px solid var(--amber-dark);
+  border-radius: 4px;
+  background: var(--surface);
+}
+
+.card-grid h3 {
+  margin: 0 0 0.65rem;
+  color: var(--dark-brown);
+  font-size: 1.2rem;
+  line-height: 1.35;
+}
+
+.card-grid p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.table-scroll {
+  margin: 1rem 0 1.25rem;
+  overflow-x: auto;
+}
+
+.televisions-page table {
+  width: 100%;
+  min-width: 40rem;
+  border-collapse: collapse;
+  background: var(--surface);
+  font-size: 1rem;
+}
+
+.televisions-page th,
+.televisions-page td {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--camel);
+  text-align: center;
+}
+
+.televisions-page th:first-child,
+.televisions-page td:first-child {
+  text-align: left;
+}
+
+.televisions-page th {
+  background: var(--brown);
+  color: var(--surface);
+  font-weight: 600;
+}
+
+.televisions-page tbody tr:nth-child(even) {
+  background: var(--page);
+}
+
+/* ----------------------------------------------------------------------------------- */
+@media (max-width: 52rem) {
+.site-header nav {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.logo_link {
+  margin: 0 auto;
+}
+
+nav ul {
+  flex: 1 1 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+/* ----------------------------------------------------------------------------------- */
+
+.calc {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.footer-inner {
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.card-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+}
+
+@media (max-width: 36rem) {
+  .hero-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+footer.footer-content {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-bottom: -1.2rem;
+  padding-left: calc(50vw - 50%);
+  padding-right: calc(50vw - 50%);
+  background: var(--brown);
+  color: var(--cream);
+}
+
+.footer-inner {
+  max-width: 65rem;
+  min-height: 5rem;
+  margin: 0 auto;
+  padding: 1rem 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.footer-content div:first-child {
+  color: var(--navajo-white);
+  font-size: 1rem;
+}
+
+.footer-content div:last-child {
+  color: var(--navajo-white);
+  font-size: 1rem;
+}
