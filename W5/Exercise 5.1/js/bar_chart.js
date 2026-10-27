@@ -95,8 +95,8 @@ const drawBarChart = data => {
             .attr("x", d => xScale(d.Screen_Tech) + xScale.bandwidth() / 2)
             .attr("y", d => yScale(d.Energy_consumption) - 5)
             .attr("text-anchor", "middle")
-            .style("font-size", "14px");
-
+            .style("font-size", "14px")
+            .text(d => `${Math.round(d.Energy_consumption)} kWh`);
 };
 
 
