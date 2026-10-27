@@ -94,11 +94,11 @@ const drawBarChart = data => {
         .style("font-size", "13px");
 
     // EXERCISE 4.7 - Step 5: Add value labels
-    barAndLabel
+        barAndLabel
         .append("text")
         .text(d => d.count)
         .attr("x", d => 100 + xScale(d.count) + 5)
         .attr("y", 15)
         .style("font-size", "13px");
-};
+} 
 

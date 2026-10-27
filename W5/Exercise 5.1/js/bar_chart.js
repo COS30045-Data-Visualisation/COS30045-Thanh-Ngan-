@@ -85,9 +85,18 @@ const drawBarChart = data => {
             .attr("height", d => innerHeight - yScale(d.Energy_consumption))
             .attr("fill", "pink");
 
+    // Add value lables for each bar
     innerChart
-        .style("font-size", "20px")
-};
+        .selectAll(".bar-label")
+        // Data binding
+        .data(data)
+        .join("text")
+            .attr("class", ".bar-label")
+            .attr("x", d => xScale(d.Screen_Tech) + xScale.bandwidth() / 2)
+            .attr("y", d => yScale(d.Energy_consumption) - 5)
+            .attr("text-anchor", "middle")
+            .style("font-size", "14px");
 
+};
 
 
