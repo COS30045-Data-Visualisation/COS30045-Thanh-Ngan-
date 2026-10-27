@@ -61,7 +61,7 @@ const drawLineChart = data => {
         .selectAll(".data-point")
         .data(data)
         .join("circle")
-            .attr("class", ".data-point")
+            .attr("class", "data-point")
             .attr("r", 3)
             .attr("cx", d => xScale(d.year))
             .attr("cy", d => yScale(d.averagePrice))

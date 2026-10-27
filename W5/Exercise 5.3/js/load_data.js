@@ -1,4 +1,6 @@
-// Load in data 5.1
+// =======================================
+//            Load in data 5.1
+// =======================================
 d3.csv("./data/Energy-55inch.csv", d => {
     return {
         Screen_Tech: d.Screen_Tech,
@@ -17,7 +19,9 @@ d3.csv("./data/Energy-55inch.csv", d => {
     console.error("Error 5.1:", error);
 })
 
-// Load in data 5.2
+// =======================================
+//            Load in data 5.2
+// =======================================
 d3.csv("./data/ARE_Spot_Prices.csv", d => {
     return {
         year: +d.Year,
@@ -34,4 +38,20 @@ d3.csv("./data/ARE_Spot_Prices.csv", d => {
 
 }).catch(error => {
     console.error("Error 5.2:", error);
+})
+
+// =======================================
+//            Load in data 5.3
+// =======================================
+d3.csv("./data/TV_Screensize_Category.csv", d => {
+    return {
+        Screensize_Category: d.Screensize_Category,
+        Count: +d.Count
+    };
+}).then(data => {
+    console.log(data);
+
+    drawDonutChart(data);
+}).catch(error => {
+    console.error("Error 5.3:", error);
 })
