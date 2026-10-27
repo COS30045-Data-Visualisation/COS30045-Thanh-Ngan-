@@ -51,7 +51,7 @@ const drawBarChart = data => {
         .append("text")
         .text("Energy Consumption (kWh)")
         .attr("x", -margin.left)
-        .attr("y", -10)
+        .attr("y", -20)
         .attr("text-anchor", "start")
 
     // Draw bars
@@ -64,7 +64,7 @@ const drawBarChart = data => {
             .attr("y", d => yScale(d.Energy_consumption))
             .attr("width", xScale.bandwidth())
             .attr("height", d => innerHeight - yScale(d.Energy_consumption))
-            .attr("fill", "pink");
+            .attr("fill", "green");
 
     // Add value lables for each bar
     innerChart
