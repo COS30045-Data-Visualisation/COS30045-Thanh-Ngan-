@@ -1,0 +1,20 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+}
+
+h2 {
+    text-align-last: center;
+}
+
+.responsive-svg-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.responsive-svg-container svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
