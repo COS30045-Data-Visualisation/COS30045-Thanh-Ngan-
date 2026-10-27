@@ -1,4 +1,4 @@
-// Load in data
+// Load in data 5.1
 d3.csv("./data/Energy-55inch.csv", d => {
     return {
         Screen_Tech: d.Screen_Tech,
@@ -15,4 +15,9 @@ d3.csv("./data/Energy-55inch.csv", d => {
 
 }).catch(error => {
     console.error("Error:", error);
+})
+
+// Load in data 5.2
+d3.csv("./data/ARE_Spot_Prices.csv", d => {
+    
 })
