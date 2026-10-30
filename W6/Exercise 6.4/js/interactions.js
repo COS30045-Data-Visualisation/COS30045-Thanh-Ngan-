@@ -110,7 +110,7 @@ const handleMouseEvents = () => {
         .on("mouseleave", (e, d) => {
             console.log("Mouse left circle", d);
         
-            d3.seclect(".tooltip")
+            d3.select(".tooltip")
             .style("opacity", 0)
             .attr("transform", `translate(0, 500)`);
         });

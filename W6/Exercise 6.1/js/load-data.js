@@ -8,10 +8,10 @@ d3.csv("data/Ex6_TVdata_withStar.csv", d => ({
     star: +d.star
 }))
 .then(data => {
-    console.log('Loaded TV records:', data.length);
+    
     console.log(data);
+    
     drawHistogram(data);
-    populateFilters(data); // Placeholder now; functionality added in W6.2
 })
 .catch(error => {
     console.error('Error loading the CSV file:', error);

@@ -1,0 +1,30 @@
+/* Set the same container width for both charts */
+#histogram,
+#scatterplot {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px 0;
+}
+
+/* Make both SVG elements responsive */
+#histogram svg,
+#scatterplot svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.tick text {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    fill: #60452f;
+}
+.domain,
+.tick line { 
+    stroke: #9c8e7f; 
+}
+.axis-label { 
+    font-size: 13px; fill: #60452f;
+}
+
+

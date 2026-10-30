@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Energy Consumption</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/visualisation.css">
+</head>
+<body>
+    <header><h1>TV Energy Consumption</h1></header>
+    <main>
+        <h2>Energy Consumption for different TV screen types and sizes</h2>
+        <p>TVs vary considerably in energy consumption.</p>
+
+        <!-- Filter buttons -->
+        <div id="filters_screen"></div>
+        <!-- create container for historgram -->
+        <div id="histogram" class="responsive-svg-container"></div>
+
+        <div class="data-source">
+            <h3>Data source</h3>
+            <p>
+                <a href="https://data.gov.au/data/dataset/energy-rating-for-household-appliances">
+                    Energy Rating Data for household appliances – Televisions
+                </a>
+                <br>
+                Downloaded Jan 2026
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Data Visualisation Week 6</p>
+    </footer>
+
+    <!-- Javascript -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="js/shared-constants.js"></script>
+    <script src="js/histogram.js"></script>
+    <script src="js/interactions.js"></script>
+    <script src="js/load-data.js"></script>
+</body>
+</html>

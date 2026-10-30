@@ -23,11 +23,17 @@ const drawHistogram = (data) => {
     const binsMaxLength = d3.max(bins, d => d.length);
     console.log({minEng, maxEng, binsMaxLength});
 
-    xScale.domain([minEng, maxEng]).range([0, innerWidth]);
-    yScale.domain([0, binsMaxLength]).range([innerHeight, 0]).nice();
+    xScale
+        .domain([minEng, maxEng])
+        .range([0, innerWidth]);
+    yScale
+        .domain([0, binsMaxLength])
+        .range([innerHeight, 0])
+        .nice();
 
     // 4. Draw one rectangle for each bin.
-    innerChart.selectAll('rect')
+    innerChart
+        .selectAll('rect')
         .data(bins)
         .join('rect')
         .attr('x', d => xScale(d.x0))
@@ -39,13 +45,16 @@ const drawHistogram = (data) => {
         .attr('stroke-width', 2);
 
     // 5. Add the axes and labels.
-    innerChart.append('g')
+    innerChart
+        .append('g')
         .attr('transform', `translate(0, ${innerHeight})`)
         .call(d3.axisBottom(xScale));
 
-    innerChart.append('g')
+    innerChart
+        .append('g')
         .call(d3.axisLeft(yScale));
 
+    // Add x-axis label
     svg.append('text')
         .attr('class', 'axis-label')
         .attr('x', width - margin.right)
@@ -53,6 +62,7 @@ const drawHistogram = (data) => {
         .attr('text-anchor', 'end')
         .text('Labelled Energy Consumption (kWh/year)');
 
+    // Add y-axis label
     svg.append('text')
         .attr('class', 'axis-label')
         .attr('x', margin.left - 55)
