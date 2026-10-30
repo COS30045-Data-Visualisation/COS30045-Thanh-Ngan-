@@ -1,7 +1,5 @@
 /* =========================================================
-   EXERCISE 6.3 - TV STAR RATING VS ENERGY CONSUMPTION
-   x-axis: Star Rating | y-axis: Energy Consumption
-   Colour: screen technology (LED / LCD / OLED)
+    EXERCISE 6.3
 ========================================================= */
 const drawScatterplot = (data) => {
 

@@ -1,7 +1,3 @@
-/* =========================================================
-   The same TV dataset is used in Exercises 6.1-6.4.
-   ========================================================= */
-
 d3.csv("data/Ex6_TVdata_withStar.csv", d => ({
     brand: d.brand,
     model: d.model,
