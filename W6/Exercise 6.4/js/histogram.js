@@ -26,7 +26,7 @@ const drawHistogram = (data) => {
     xScale.domain([minEng, maxEng]).range([0, innerWidth]);
     yScale.domain([0, binsMaxLength]).range([innerHeight, 0]).nice();
 
-    // 4. Draw one rectangle for each bin.
+    // 4. Draw rectangles
     innerChart.selectAll("rect")
         .data(bins)
         .join("rect")

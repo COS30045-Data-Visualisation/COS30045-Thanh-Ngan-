@@ -16,11 +16,11 @@ const innerHeight = height - margin.top - margin.bottom;
 const barColor = "#606464";
 const bodyBackgroundColor = "#fffaf0";
 
-// Histogram Scales
+// Histogram scales
 const xScale = d3.scaleLinear();
 const yScale = d3.scaleLinear();
 
-// Bin Generator
+// Bin generator
 const binGenerator = d3.bin()
     .value(d => d.energyConsumption);
 
@@ -38,14 +38,14 @@ const filters_screen = [
 /* ---------------------------------------------------------
    EXERCISE 6.3 - SCATTERPLOT
    --------------------------------------------------------- */
-// Set up inner chart variable for scatterplot
+// Set up inner chart variable
 let innerChartS;
 
-// Set up scatterplot scales & color scale
+// Declare 1st
 const xScaleS = d3.scaleLinear();
 const yScaleS = d3.scaleLinear();
 const colorScale = d3.scaleOrdinal();
 
-// Tooltip dimensions for the scatterplot
+// Tooltip dimensions
 const tooltipWidth = 65;
 const tooltipHeight = 32;
