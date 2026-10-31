@@ -47,9 +47,9 @@ const drawBarChart = data => {
 
     // Exercise 4.6 - Create linear scale
     const xScale = d3.scaleLinear()
-        // Input value range from 0 to 1200. It's enough to contain max-count=1096
+        // Input value, 1200 > 1096
         .domain([0, 1200])
-        // Output value range from 0 to 400 SVG units
+        // Output value in SVG units
         .range([0, 400]);
 
      
@@ -94,7 +94,7 @@ const drawBarChart = data => {
         .style("font-size", "13px");
 
     // EXERCISE 4.7 - Step 5: Add value labels
-        barAndLabel
+    barAndLabel
         .append("text")
         .text(d => d.count)
         .attr("x", d => 100 + xScale(d.count) + 5)

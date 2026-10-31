@@ -22,6 +22,7 @@ const svg = d3.select(".responsive-svg-container")
 d3.csv("./data/tvBrandCount.csv", d => {
     return {
         brand: d.brand,
+        // Unary plus operator
         count: +d.count
     };
 }).then(data => {
@@ -57,9 +58,9 @@ const drawBarChart = data => {
     
     // EXERCISE 4.6 - Create linear scale
     const xScale = d3.scaleLinear()
-        // Input value range from 0 to 1200. It's enough to contain max-count=1096
+        // Input value, 1200 > 1096
         .domain([0, 1200])
-        // Output value range from 0 to 400 SVG units
+        // Output value, SVG units
         .range([0, 400]);
 
      
@@ -88,6 +89,7 @@ const drawBarChart = data => {
     
     // EXERCISE 4.6 - Scale bar widths
     .attr("width", d => xScale(d.count))
+    
     // EXERCISE 4.6 - Scale bar heights
     .attr("height", yScale.bandwidth())
     .attr("fill", "blue")
